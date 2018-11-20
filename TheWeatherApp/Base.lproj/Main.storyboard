@@ -70,7 +70,7 @@
         <!--Select city-->
         <scene sceneID="MpB-V4-R54">
             <objects>
-                <viewController id="rUA-ll-VQ2" customClass="ViewController" customModule="TheWeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="rUA-ll-VQ2" customClass="SelectCityViewController" customModule="TheWeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U4r-l7-XEE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -82,18 +82,43 @@
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jqj-kO-oMn">
+                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="customCell" id="M4L-zw-0Ex">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="M4L-zw-0Ex" id="Akj-hF-gTf">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="rUA-ll-VQ2" id="Qd9-kM-5r9"/>
+                                    <outlet property="delegate" destination="rUA-ll-VQ2" id="L3f-hW-o0P"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="MoC-jf-h9j" firstAttribute="trailing" secondItem="BFJ-YG-3qk" secondAttribute="trailing" id="EIB-0G-8MV"/>
+                            <constraint firstItem="Jqj-kO-oMn" firstAttribute="leading" secondItem="BFJ-YG-3qk" secondAttribute="leading" id="EJq-XB-sv0"/>
                             <constraint firstItem="MoC-jf-h9j" firstAttribute="top" secondItem="BFJ-YG-3qk" secondAttribute="top" id="EyP-mN-xq1"/>
+                            <constraint firstItem="BFJ-YG-3qk" firstAttribute="trailing" secondItem="Jqj-kO-oMn" secondAttribute="trailing" id="LrD-Ye-sRJ"/>
+                            <constraint firstItem="Jqj-kO-oMn" firstAttribute="top" secondItem="MoC-jf-h9j" secondAttribute="bottom" id="XtR-B4-5hb"/>
                             <constraint firstItem="MoC-jf-h9j" firstAttribute="leading" secondItem="BFJ-YG-3qk" secondAttribute="leading" id="ZFk-k1-KHZ"/>
+                            <constraint firstItem="BFJ-YG-3qk" firstAttribute="bottom" secondItem="Jqj-kO-oMn" secondAttribute="bottom" id="ZaZ-Xl-ROe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="BFJ-YG-3qk"/>
                     </view>
                     <navigationItem key="navigationItem" title="Select city" id="D6M-cQ-cGi">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="stop" id="1oa-P3-olI"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="citiesTableView" destination="Jqj-kO-oMn" id="984-9a-jaW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="itb-c7-rAA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
