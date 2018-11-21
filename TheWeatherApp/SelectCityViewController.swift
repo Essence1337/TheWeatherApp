@@ -9,6 +9,19 @@
 import UIKit
 import SwiftyJSON
 
+struct CitiesStruct: Decodable {
+    
+    let country: String
+    let name: String
+    let lat: String
+    let lng: String
+    
+//    "country": "AD",
+//    "name": "Sant Julià de Lòria",
+//    "lat": "42.46372",
+//    "lng": "1.49129"
+}
+
 class SelectCityViewController: UIViewController {
     
     @IBOutlet weak var citiesTableView: UITableView!
@@ -40,6 +53,22 @@ class SelectCityViewController: UIViewController {
             dataArray = jsonData
         }catch {
             print("Error")
+        }
+        
+        
+    
+    }
+    
+    func jsonVanila() {
+        let path = Bundle.main.path(forResource: "cities", ofType: "json")
+        let data = NSData(contentsOfFile: path!)
+        print("1")
+        do {
+            let cities = try JSONDecoder().decode([CitiesStruct].self, from: data! as Data)
+            print("2")
+            print(cities[0].name)
+        } catch let jsonError {
+            print(jsonError)
         }
     }
     
