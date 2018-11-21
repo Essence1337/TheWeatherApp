@@ -12,11 +12,13 @@ import SwiftyJSON
 class SelectCityViewController: UIViewController {
     
     @IBOutlet weak var citiesTableView: UITableView!
+    @IBOutlet weak var citiesSearchBar: UISearchBar!
     
-    var dataArray: JSON = []
     let identifire = "customCell"
-    
-    //MARK: - Functions
+    var dataArray: JSON = []
+    var searchCity = [String]()
+
+//MARK: - Functions
     override func loadView() {
         super.loadView()
         getJson()
@@ -24,8 +26,19 @@ class SelectCityViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        huynia()
     }
     
+    func huynia(){
+        let searchText = "y"
+        let searchPredicate = NSPredicate(format: "name contains[cd] %@", searchText)
+        if let array = dataArray.arrayObject as? [[String:String]] {
+            let foundItems = JSON(array.filter{ searchPredicate.evaluate(with: $0) })
+            print(foundItems)
+        }
+    }
+    
+//MARK: - JsonFunc
     func getJson() {
         let path = Bundle.main.path(forResource: "cities", ofType: "json")
         let data = NSData(contentsOfFile: path!)
@@ -40,6 +53,7 @@ class SelectCityViewController: UIViewController {
 }
 
 //MARK: - Extensions
+//UITableView
 extension SelectCityViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -59,9 +73,18 @@ extension SelectCityViewController: UITableViewDelegate, UITableViewDataSource {
             print("indexpath:\(latStr)")
             //            locatio(vavalfas d sadhsad sa)
         }
-        if let lonStr = dataArray[indexPath.row]["lon"].rawString(){
-            print("indexpath:\(lonStr)")
+        if let lngStr = dataArray[indexPath.row]["lng"].rawString(){
+            print("indexpath:\(lngStr)")
             //            locatio(vavalfas d sadhsad sa)
         }
     }
 }
+
+//SearchBar
+extension SelectCityViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+    }
+}
+
+

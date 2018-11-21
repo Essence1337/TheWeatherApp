@@ -117,6 +117,7 @@
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="stop" id="1oa-P3-olI"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="citiesSearchBar" destination="MoC-jf-h9j" id="xmv-QK-CAf"/>
                         <outlet property="citiesTableView" destination="Jqj-kO-oMn" id="984-9a-jaW"/>
                     </connections>
                 </viewController>
