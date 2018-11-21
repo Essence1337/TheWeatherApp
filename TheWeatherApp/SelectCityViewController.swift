@@ -17,7 +17,9 @@ class SelectCityViewController: UIViewController {
     let identifire = "customCell"
     var dataArray: JSON = []
     var searchCity = [String]()
-
+    var searching = false
+    var foundItems: JSON = []
+    
 //MARK: - Functions
     override func loadView() {
         super.loadView()
@@ -26,16 +28,7 @@ class SelectCityViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        huynia()
-    }
-    
-    func huynia(){
-        let searchText = "y"
-        let searchPredicate = NSPredicate(format: "name contains[cd] %@", searchText)
-        if let array = dataArray.arrayObject as? [[String:String]] {
-            let foundItems = JSON(array.filter{ searchPredicate.evaluate(with: $0) })
-            print(foundItems)
-        }
+        citiesSearchBar.delegate = self
     }
     
 //MARK: - JsonFunc
@@ -57,13 +50,22 @@ class SelectCityViewController: UIViewController {
 extension SelectCityViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataArray.count
+        if searching {
+            return foundItems.count
+        } else {
+            return dataArray.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: identifire, for: indexPath)
-        if let str = dataArray[indexPath.row]["name"].rawString(){
+        
+        if searching {
+            cell.textLabel?.text = foundItems[indexPath.row]["name"].rawString()
+        }else{
+            if let str = dataArray[indexPath.row]["name"].rawString(){
             cell.textLabel?.text = str
+            }
         }
         return cell
     }
@@ -84,6 +86,19 @@ extension SelectCityViewController: UITableViewDelegate, UITableViewDataSource {
 extension SelectCityViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
+        let searchText = searchBar.text
+        let searchPredicate = NSPredicate(format: "name contains[cd] %@", searchText!)
+        if let array = dataArray.arrayObject as? [[String:String]] {
+            foundItems = JSON(array.filter{ searchPredicate.evaluate(with: $0) })
+            searching = true
+            citiesTableView.reloadData()
+        }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searching = false
+        searchBar.text = ""
+        citiesTableView.reloadData()
     }
 }
 
