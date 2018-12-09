@@ -17,6 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        DispatchQueue.global(qos: .userInteractive).async {
+            print("Start parsing")
+            let start = Date()
+            ParseJson.shared.jsonVanila()
+            let end = Date()
+            print("Parsing done, elapsing time: \(end.timeIntervalSince(start))")
+            
+        }
+        
         return true
     }
 

@@ -9,26 +9,15 @@
 import UIKit
 
 class CitiesViewController: UIViewController {
-
-    @IBAction func buttonTaped(_ sender: Any) {
-        let selectCityVC = SelectCityViewController()
-        selectCityVC.jsonVanila()
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    
+    let selectCityVC = SelectCityViewController()
+    
+    @IBAction func fromStructTapped(_ sender: Any) {
+        let str = ParseJson.shared.cities[0].name
+        print(str)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
-    */
-
 }

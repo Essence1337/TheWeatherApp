@@ -34,12 +34,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2wn-jh-jde">
-                                <rect key="frame" x="164" y="318" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LVG-PL-Ucn">
+                                <rect key="frame" x="149" y="395" width="77" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="from struct"/>
                                 <connections>
-                                    <action selector="buttonTaped:" destination="wVe-xB-qUX" eventType="touchUpInside" id="eMK-tz-8Eb"/>
+                                    <action selector="fromStructTapped:" destination="wVe-xB-qUX" eventType="touchUpInside" id="F7a-1h-QzO"/>
                                 </connections>
                             </button>
                         </subviews>

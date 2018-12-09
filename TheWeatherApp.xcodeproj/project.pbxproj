@@ -17,6 +17,7 @@
 		D963877A21A1DB1100FE8E81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D963877921A1DB1100FE8E81 /* Assets.xcassets */; };
 		D963877D21A1DB1100FE8E81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D963877B21A1DB1100FE8E81 /* LaunchScreen.storyboard */; };
 		D963878721A1E8C600FE8E81 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D963878621A1E8C600FE8E81 /* TableViewCell.swift */; };
+		D97239AD21BC37EB000882D1 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97239AC21BC37EB000882D1 /* Location.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		D963877C21A1DB1100FE8E81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D963877E21A1DB1100FE8E81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D963878621A1E8C600FE8E81 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		D97239AC21BC37EB000882D1 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		F750E5FB07DA20C609274BCE /* Pods-TheWeatherApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheWeatherApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TheWeatherApp/Pods-TheWeatherApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,6 +83,7 @@
 				D963877121A1DB0C00FE8E81 /* SelectCityViewController.swift */,
 				D947417721A4F92200C82D07 /* CitiesViewController.swift */,
 				D963878621A1E8C600FE8E81 /* TableViewCell.swift */,
+				D97239AC21BC37EB000882D1 /* Location.swift */,
 				D963877321A1DB0C00FE8E81 /* Main.storyboard */,
 				D963877921A1DB1100FE8E81 /* Assets.xcassets */,
 				D963877B21A1DB1100FE8E81 /* LaunchScreen.storyboard */,
@@ -215,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D97239AD21BC37EB000882D1 /* Location.swift in Sources */,
 				D963878721A1E8C600FE8E81 /* TableViewCell.swift in Sources */,
 				D947417821A4F92300C82D07 /* CitiesViewController.swift in Sources */,
 				D963877821A1DB0C00FE8E81 /* TheWeatherApp.xcdatamodeld in Sources */,
