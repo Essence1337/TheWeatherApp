@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftyJSON
 
 class SelectCityViewController: UIViewController {
     
@@ -17,12 +16,11 @@ class SelectCityViewController: UIViewController {
     let identifire = "customCell"
     var searchCity = [String]()
     var searching = false
-    var foundItems: JSON = []
+    var foundCities: [CitiesStruct] = []
     
 //MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        citiesSearchBar.delegate = self
     }
 }
 
@@ -31,7 +29,7 @@ extension SelectCityViewController: UITableViewDelegate, UITableViewDataSource, 
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searching {
-            return foundItems.count
+            return foundCities.count
         } else {
             return ParseJson.shared.cities.count
         }
@@ -39,38 +37,50 @@ extension SelectCityViewController: UITableViewDelegate, UITableViewDataSource, 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: identifire, for: indexPath)
-        
-        cell.textLabel?.text = ParseJson.shared.cities[indexPath.row].name
-        return cell
+        if searching {
+            cell.textLabel?.text = foundCities[indexPath.row].name
+            return cell
+
+        } else {
+            cell.textLabel?.text = ParseJson.shared.cities[indexPath.row].name
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let latStr = ParseJson.shared.cities[indexPath.row].lat
-            print("indexpath:\(latStr)")
-            //            locatio(vavalfas d sadhsad sa)
         
-        let lngStr = ParseJson.shared.cities[indexPath.row].lat
-            print("indexpath:\(lngStr)")
-            //            locatio(vavalfas d sadhsad sa)
+        if searching {
+            let latStr = foundCities[indexPath.row].lat
+            print("Latitude: \(latStr)")
 
+            let lngStr = foundCities[indexPath.row].lng
+            print("Longitude: \(lngStr)")
+        } else {
+        let latStr = ParseJson.shared.cities[indexPath.row].lat
+            print("Latitude: \(latStr)")
+        
+        let lngStr = ParseJson.shared.cities[indexPath.row].lng
+            print("Longitude: \(lngStr)")
+        }
     }
     
-    //    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-    //
-    //        let searchText = searchBar.text
-    //        let searchPredicate = NSPredicate(format: "name contains[cd] %@", searchText!)
-    //        if let array = dataArray.arrayObject as? [[String:String]] {
-    //            foundItems = JSON(array.filter{ searchPredicate.evaluate(with: $0) })
-    //            searching = true
-    //            citiesTableView.reloadData()
-    //        }
-    //    }
-    //
-    //    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-    //        searching = false
-    //        searchBar.text = ""
-    //        citiesTableView.reloadData()
-    //    }
+        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    
+            let searchText = searchBar.text
+            searching = true
+            DispatchQueue.global(qos: .userInteractive).async {
+                self.foundCities = ParseJson.shared.cities.filter{$0.name.hasPrefix(searchText!)}
+                DispatchQueue.main.async {
+                    self.citiesTableView.reloadData()
+                }
+            }
+        }
+    
+        func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+            searching = false
+            searchBar.text = ""
+            citiesTableView.reloadData()
+        }
     
 }
 

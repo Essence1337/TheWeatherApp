@@ -91,6 +91,9 @@
                                     <constraint firstAttribute="width" secondItem="MoC-jf-h9j" secondAttribute="height" multiplier="375:56" id="Kn7-tZ-w5c"/>
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="rUA-ll-VQ2" id="rLI-w7-pgz"/>
+                                </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jqj-kO-oMn">
                                 <rect key="frame" x="0.0" y="120" width="375" height="547"/>

@@ -24,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             ParseJson.shared.jsonVanila()
             let end = Date()
             print("Parsing done, elapsing time: \(end.timeIntervalSince(start))")
-            
         }
         
         return true
